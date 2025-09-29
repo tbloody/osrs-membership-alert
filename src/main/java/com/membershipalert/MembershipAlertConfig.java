@@ -6,7 +6,7 @@ import net.runelite.client.config.ConfigItem;
 
 import java.awt.*;
 
-@ConfigGroup("example")
+@ConfigGroup("membership-alet")
 public interface MembershipAlertConfig extends Config {
     @ConfigItem(
             keyName = "membership-days-danger",
