@@ -7,7 +7,7 @@ public class MemberShipAlertPluginTest
 {
 	public static void main(String[] args) throws Exception
 	{
-		ExternalPluginManager.loadBuiltin(MemberShipAlertPlugin.class);
+		ExternalPluginManager.loadBuiltin(MembershipAlertPlugin.class);
 		RuneLite.main(args);
 	}
 }
