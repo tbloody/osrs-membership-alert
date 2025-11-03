@@ -35,14 +35,15 @@ public class MembershipAlertPlugin extends Plugin {
 
     @Override
     protected void startUp() throws Exception {
-        log.info("Membership alert started!");
+        log.debug("Membership alert started!");
         overlayManager.add(overlay);
         membershipDays = client.getVarpValue(VarPlayer.MEMBERSHIP_DAYS);
     }
 
     @Override
     protected void shutDown() throws Exception {
-        log.info("Membership alert stopped!");
+        overlayManager.remove(overlay);
+        log.debug("Membership alert stopped!");
     }
     @Subscribe
     public void onVarbitChanged(VarbitChanged varBitChanged ) {
