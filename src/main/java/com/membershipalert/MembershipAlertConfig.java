@@ -52,4 +52,13 @@ public interface MembershipAlertConfig extends Config {
     default Color SuccessColor() {
         return Color.GREEN;
     }
+
+    @ConfigItem(
+            keyName = "hide-on-success",
+            name= "Hide on success",
+            description = "Hides the overlay instead of displaying the remaining days in success color."
+    )
+    default boolean HideOnSuccess() {
+        return false;
+    }
 }

@@ -36,8 +36,8 @@ public class MembershipAlertPlugin extends Plugin {
     @Override
     protected void startUp() throws Exception {
         log.debug("Membership alert started!");
-        overlayManager.add(overlay);
         membershipDays = client.getVarpValue(VarPlayer.MEMBERSHIP_DAYS);
+        overlayManager.add(overlay);
     }
 
     @Override

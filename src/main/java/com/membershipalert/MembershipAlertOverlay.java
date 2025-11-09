@@ -36,6 +36,7 @@ class MembershipAlertOverlay extends Overlay {
         }
 
         if (memberShipDays > config.WarningDays()) {
+            if (config.HideOnSuccess() ) {return null;}
             color = config.SuccessColor();
         }
 
