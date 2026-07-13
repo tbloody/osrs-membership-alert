@@ -25,24 +25,39 @@ class MembershipAlertOverlay extends Overlay {
         this.config = config;
     }
 
+    private Boolean DoShow() {
+        if (memberShipDays <= config.DangerDays() || config.HideOptions() == MembershipAlertConfig.HideOptions.NEVER) return true;
+
+        if (memberShipDays <= config.WarningDays() && config.HideOptions() != MembershipAlertConfig.HideOptions.WARNING) return true;
+
+        if (memberShipDays > config.WarningDays() && (config.HideOptions() != MembershipAlertConfig.HideOptions.WARNING && config.HideOptions() != MembershipAlertConfig.HideOptions.SUCCESS)) return true;
+
+        return false;
+    }
+
+    private Color GetColor() {
+        if (memberShipDays > config.WarningDays()) {
+            return config.SuccessColor();
+        }
+
+        if (memberShipDays > config.DangerDays()) {
+            return config.WarningColor();
+        }
+
+        return config.DangerColor();
+    }
+
     @Override
     public Dimension render(Graphics2D graphics) {
         panelComponent.getChildren().clear();
+
+        if(!DoShow()) return null;
+
         String overlayTitle = "Membership:";
-        Color color = config.DangerColor();
-
-        if (memberShipDays > config.DangerDays()) {
-            color = config.WarningColor();
-        }
-
-        if (memberShipDays > config.WarningDays()) {
-            if (config.HideOnSuccess() ) {return null;}
-            color = config.SuccessColor();
-        }
 
         panelComponent.getChildren().add(TitleComponent.builder()
                 .text(overlayTitle)
-                .color(color)
+                .color(GetColor())
                 .build());
 
         panelComponent.setPreferredSize(new Dimension(

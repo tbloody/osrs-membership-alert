@@ -53,12 +53,15 @@ public interface MembershipAlertConfig extends Config {
         return Color.GREEN;
     }
 
+    public enum HideOptions{
+        NEVER, WARNING, SUCCESS
+    }
     @ConfigItem(
-            keyName = "hide-on-success",
-            name= "Hide on success",
+            keyName = "hide-options",
+            name= "Hide options",
             description = "Hides the overlay instead of displaying the remaining days in success color."
     )
-    default boolean HideOnSuccess() {
-        return false;
+    default HideOptions HideOptions() {
+        return HideOptions.NEVER;
     }
 }

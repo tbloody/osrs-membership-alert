@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.ChatMessageType;
 import net.runelite.api.Client;
+import net.runelite.api.GameState;
 import net.runelite.api.VarPlayer;
 import net.runelite.api.events.VarbitChanged;
 import net.runelite.client.config.ConfigManager;
@@ -36,7 +37,11 @@ public class MembershipAlertPlugin extends Plugin {
     @Override
     protected void startUp() throws Exception {
         log.debug("Membership alert started!");
-        membershipDays = client.getVarpValue(VarPlayer.MEMBERSHIP_DAYS);
+
+        if(client.getGameState() == GameState.LOGGED_IN && client.getLocalPlayer() != null) {
+            membershipDays = client.getVarpValue(VarPlayer.MEMBERSHIP_DAYS);
+        }
+
         overlayManager.add(overlay);
     }
 
