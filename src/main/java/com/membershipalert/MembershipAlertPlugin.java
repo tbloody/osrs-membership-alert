@@ -17,7 +17,7 @@ import net.runelite.client.ui.overlay.OverlayManager;
 
 @Slf4j
 @PluginDescriptor(
-        name = "Membership alert"
+        name = "Membership Alert"
 )
 public class MembershipAlertPlugin extends Plugin {
     @Inject
@@ -36,7 +36,7 @@ public class MembershipAlertPlugin extends Plugin {
 
     @Override
     protected void startUp() throws Exception {
-        log.debug("Membership alert started!");
+        log.debug("Membership Alert started!");
 
         if(client.getGameState() == GameState.LOGGED_IN && client.getLocalPlayer() != null) {
             membershipDays = client.getVarpValue(VarPlayer.MEMBERSHIP_DAYS);
@@ -48,7 +48,7 @@ public class MembershipAlertPlugin extends Plugin {
     @Override
     protected void shutDown() throws Exception {
         overlayManager.remove(overlay);
-        log.debug("Membership alert stopped!");
+        log.debug("Membership Alert stopped!");
     }
     @Subscribe
     public void onVarbitChanged(VarbitChanged varBitChanged ) {
